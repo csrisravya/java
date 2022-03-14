@@ -1,0 +1,27 @@
+import java.sql.*;
+public class StudentInfo 
+{
+
+	public static void main(String[] args) throws Exception
+	{
+	
+		String dbname = "jdbc:mysql://localhost:3306/StudentInformation"; 
+		String username = "root";  
+		String password = "goswami"; 
+		String query = "select name from StudentInfor"; 
+		
+		Class.forName("com.mysql.cj.jdbc.Driver"); 
+		Connection con = DriverManager.getConnection(dbname,username,password); 
+										  
+		Statement st = con.createStatement(); 									
+		ResultSet rs = st.executeQuery(query);
+		rs.next();
+				
+		String nae = rs.getString("name"); 
+		System.out.println(nae);
+		st.close();
+		con.close();
+
+	}
+
+}
