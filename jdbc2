@@ -1,0 +1,40 @@
+package jdbc2;
+import java.sql.*;
+public class jdbc2 
+{
+
+	public static void main(String[] args) throws SQLException
+	{
+		String url = "jdbc:mysql://localhost:3306/jdbcuni";
+		String user = "root";
+		String pass = "goswami";
+		String query = "insert into stud values('shavi','006',10,'2010-03-06')";
+		try
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}
+		catch(Exception e)
+		{
+			System.out.print(e);
+		}
+		try
+		{
+			Connection con = DriverManager.getConnection(url,user,pass);
+			Statement st = con.createStatement();
+			st.executeUpdate(query);
+			ResultSet rs = st.executeQuery("select * from stud");
+			while(rs.next() != false)
+			{
+				System.out.println(rs.getString(1) + " : " +rs.getString(2) + " : " +rs.getString(3) +" : " + rs.getString(4));
+			}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+
+
+	}
+
+}
