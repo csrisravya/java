@@ -34,7 +34,6 @@ public class jdbc2
 			System.out.println(e);
 		}
 
-
 	}
 
 }
