@@ -1,0 +1,55 @@
+import java.sql.*;
+import java.io.*;
+public class CopyContents 
+{
+
+	public static void main(String[] args) throws SQLException
+	{
+		String url = "jdbc:mysql://localhost:3306/StudentInformation";
+		String uname = "root";
+		String pass = "goswami";
+		try
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Driver unable to load: "+e);
+		}
+		try 
+		{
+			Connection con = DriverManager.getConnection(url,uname,pass);
+			Statement select = con.createStatement();
+			ResultSet rs = select.executeQuery("select * from StudentInfor");
+		    System.out.println("Got results:");
+		    System.out.println(rs);
+		    FileWriter fw = new FileWriter("C:\\!1 desktop\\akka chelli\\akka\\eclipse\\CopyContents/text1.txt"); 
+		    BufferedWriter bw = new BufferedWriter(fw);
+		    while(rs.next()!=false) 
+		      {  
+		          try{
+		                  bw.write(String.valueOf(rs.getFloat("srn")));; // \n is for to write in a new Line .  
+		                  bw.newLine();
+		                  bw.write(rs.getString("name"));; // \n is for to write in a new Line .  
+		                  bw.newLine();
+		                  bw.write(String.valueOf(rs.getString("dob")));; // \n is for to write in a new Line .  
+		                  bw.newLine();
+		          }  
+		          catch (Exception e) {  
+		              System.out.println("Errrrr......... writing to a file..... :P"+e);  
+		          }            
+		      }  
+		      bw.close();
+		      select.close();
+		      con.close();
+		    }
+		    catch( Exception e ) 
+			{
+		      e.printStackTrace();
+		      
+		    }
+		
+		
+
+}
+}
