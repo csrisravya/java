@@ -36,7 +36,7 @@ public class CopyContents
 		                  bw.newLine();
 		          }  
 		          catch (Exception e) {  
-		              System.out.println("Errrrr......... writing to a file..... :P"+e);  
+		              System.out.println("writing to a file..... :P"+e);  
 		          }            
 		      }  
 		      bw.close();
